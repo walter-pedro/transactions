@@ -23,6 +23,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * 
+ * @author walter
+ * This class tests the Transaction class
+ */
 @RunWith(SpringRunner.class)
 public class TransactionServiceTest {
 

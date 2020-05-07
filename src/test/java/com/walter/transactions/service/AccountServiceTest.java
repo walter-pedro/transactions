@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * @author Walter Pedro
- * This class tests the AcountService class
+ * This class tests the AccountService class
  */
 @RunWith(SpringRunner.class)
 public class AccountServiceTest {
