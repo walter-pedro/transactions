@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.naming.directory.InvalidAttributesException;
 
+import org.springframework.stereotype.Component;
+
 import com.walter.transactions.model.OperationType;
 import com.walter.transactions.model.Transaction;
 import com.walter.transactions.repository.AccountRepository;
@@ -12,6 +14,7 @@ import com.walter.transactions.repository.OperationTypeRepository;
 import com.walter.transactions.repository.TransactionRepository;
 import com.walter.transactions.service.TransactionService;
 
+@Component
 public class TransactionServiceImpl implements TransactionService {
 
 	TransactionRepository transactionRepository;
@@ -26,7 +29,7 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 	
 	@Override
-	public void save(Transaction transaction) throws InvalidAttributesException {
+	public Transaction save(Transaction transaction) throws InvalidAttributesException {
 		
 		// Validate if exists the referenced account
 		if (accountRepository.findById(transaction.getAccount().getAccountId()).isEmpty()) {
@@ -41,7 +44,7 @@ public class TransactionServiceImpl implements TransactionService {
 			transaction.setAmount(transaction.getAmount().multiply(new BigDecimal(-1)));
 		}		
 		
-		transactionRepository.save(transaction);
+		return transactionRepository.save(transaction);
 		
 	}
 }
