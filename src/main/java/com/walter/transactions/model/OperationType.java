@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author Walter Pedro
- * This entuty Represents the OperationsType table
+ * This entity Represents the OperationsType table
  */
 
 @Entity
@@ -14,17 +14,17 @@ public class OperationType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long operationType;
+    private Long operationTypeId;
 
     @NotNull
     private String description;
 
-    public Long getOperationType() {
-        return operationType;
+    public Long getOperationTypeId() {
+        return operationTypeId;
     }
 
-    public void setOperationType(Long operationType) {
-        this.operationType = operationType;
+    public void setOperationTypeId(Long operationTypeId) {
+        this.operationTypeId = operationTypeId;
     }
 
     public String getDescription() {
