@@ -15,4 +15,5 @@ import org.springframework.stereotype.Service;
 public interface AccountService {
     public Account getAccountById(Long accountId) throws InvalidAttributesException;
 	public Account saveAccount(Account account) throws IllegalArgumentException, InvalidAttributesException;
+	public Account updateLimit(Account account);
 }

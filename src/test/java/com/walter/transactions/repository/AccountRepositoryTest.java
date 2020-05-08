@@ -2,6 +2,7 @@ package com.walter.transactions.repository;
 
 import static org.junit.Assert.assertThat;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -68,5 +69,19 @@ public class AccountRepositoryTest {
 		
 		account = searchAccount.get();
 		assertThat(account.getAccountId(), is(insertedAccount.getAccountId()));
+	}
+	
+	@Test
+	public void updateAccountLimit() {
+		Account insertedAccount = accountRepositoryTestHelper.insertAccount();		
+		
+		BigDecimal newLimit = insertedAccount.getLimit().add(
+				new BigDecimal(10));
+		
+		insertedAccount.setLimit(newLimit);
+		
+		insertedAccount = accountRepository.save(insertedAccount);
+		
+		assertThat(insertedAccount.getLimit(), is(newLimit));
 	}
 }

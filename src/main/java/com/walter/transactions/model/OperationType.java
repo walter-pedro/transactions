@@ -18,6 +18,9 @@ public class OperationType {
 
     @NotNull
     private String description;
+    
+    @NotNull
+    private String operationType;
 
     public Long getOperationTypeId() {
         return operationTypeId;
@@ -34,5 +37,13 @@ public class OperationType {
     public void setDescription(String description) {
         this.description = description;
     }
+
+	public String getOperationType() {
+		return operationType;
+	}
+
+	public void setOperationType(String operationType) {
+		this.operationType = operationType;
+	}
 
 }

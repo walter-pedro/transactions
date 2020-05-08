@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walter.transactions.model.Transaction;
 import com.walter.transactions.service.TransactionService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 
  * @author Walter Pedro
@@ -21,11 +24,13 @@ import com.walter.transactions.service.TransactionService;
  */
 @RestController
 @RequestMapping("/transactions")
+@Api(value="ProductsAPI")
 public class TransactionResource {
 	
 	@Autowired
 	TransactionService transactionService;
 	
+	@ApiOperation(value="Inserts a new transaction")
 	@PostMapping
 	public ResponseEntity<Transaction> saveTransaction(@RequestBody Transaction transaction) throws InvalidAttributesException {
 		
@@ -39,4 +44,5 @@ public class TransactionResource {
 		return new ResponseEntity<>(new Error(e.getMessage()), 
 				HttpStatus.BAD_REQUEST);
 	}
+
 }

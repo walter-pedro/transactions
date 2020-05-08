@@ -41,4 +41,9 @@ public class AccountServiceImpl implements AccountService {
     	
     	return accountRepository.save(account);
     }
+
+	@Override
+	public Account updateLimit(Account account) {
+		return accountRepository.save(account);
+	}
 }

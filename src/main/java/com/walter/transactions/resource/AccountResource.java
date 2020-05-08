@@ -17,17 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walter.transactions.model.Account;
 import com.walter.transactions.service.AccountService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /*
  * @author Walter Pedro
  * This class exposes the account services
  */
 @RestController
 @RequestMapping(value="/accounts")
+@Api(value="Accounts API")
 public class AccountResource {
 	
 	@Autowired
 	AccountService accountService;
 	
+	@ApiOperation(value="Returns an account")
 	@GetMapping("/{accountId}")
 	public ResponseEntity<Account> getAccountById(
 			@PathVariable("accountId") Long accountId) throws InvalidAttributesException {
@@ -37,6 +42,7 @@ public class AccountResource {
 		return new ResponseEntity<>(account, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value="Inserts a new account")
 	@PostMapping
 	public ResponseEntity<Account> saveAccount(@RequestBody @Valid Account account) throws IllegalArgumentException, InvalidAttributesException {
 		

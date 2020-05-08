@@ -27,6 +27,7 @@ public class OperationTypeRepositoryTestHelper {
 	public OperationType insertPurchaseOperationType() {
 		operationType = new OperationType();
 		operationType.setDescription("COMPRA A VISTA");
+		operationType.setOperationType("D");
 		
 		return operationTypeRepository.save(operationType);
 	}
@@ -34,6 +35,7 @@ public class OperationTypeRepositoryTestHelper {
 	public OperationType insertInstallmentPurchaseOperationType() {
 		operationType = new OperationType();
 		operationType.setDescription("COMPRA PARCELADA");
+		operationType.setOperationType("D");
 		
 		return operationTypeRepository.save(operationType);
 	}
@@ -41,6 +43,7 @@ public class OperationTypeRepositoryTestHelper {
 	public OperationType insertWithdrawOperationType() {
 		operationType = new OperationType();
 		operationType.setDescription("SAQUE");
+		operationType.setOperationType("D");
 		
 		return operationTypeRepository.save(operationType);
 	}
@@ -48,6 +51,7 @@ public class OperationTypeRepositoryTestHelper {
 	public OperationType insertPaymentOperationType() {
 		operationType = new OperationType();
 		operationType.setDescription("PAGAMENTO");
+		operationType.setOperationType("C");
 		
 		return operationTypeRepository.save(operationType);
 	}

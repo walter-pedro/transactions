@@ -2,6 +2,8 @@ package com.walter.transactions.model;
 
 import org.hibernate.validator.constraints.Length;
 
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +23,9 @@ public class Account {
     @NotNull
     @Length(min = 11, max = 14)
     private String documentNumber;
+    
+    @NotNull
+    private BigDecimal limit;
 
     public Long getAccountId() {
         return accountId;
@@ -37,4 +42,12 @@ public class Account {
     public void setDocumentNumber(String documentNumber) {
         this.documentNumber = documentNumber;
     }
+
+	public BigDecimal getLimit() {
+		return limit;
+	}
+
+	public void setLimit(BigDecimal limit) {
+		this.limit = limit;
+	}
 }

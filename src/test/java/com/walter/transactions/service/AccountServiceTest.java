@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.naming.directory.InvalidAttributesException;
+
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -41,6 +43,7 @@ public class AccountServiceTest {
         existentAccount = new Account();
         existentAccount.setAccountId(Constants.VALID_ACCOUNT_ID);
         existentAccount.setDocumentNumber(Constants.VALID_CPF);
+        existentAccount.setLimit(new BigDecimal(Constants.ACCOUNT_LIMIT));
     }
 
     @Test
@@ -70,6 +73,24 @@ public class AccountServiceTest {
     	when(accountRepository.findById(Constants.VALID_ACCOUNT_ID)).thenReturn(Optional.empty());
         account = accountService.getAccountById(Constants.VALID_ACCOUNT_ID);
         assertThat(account.getAccountId(), is(existentAccount.getAccountId()));        
+    }
+    
+    @Test
+    public void mustUpdateAccountLimit() {
+    	
+    	int limitDifference = 10;
+    	
+        Account updatedAccount = new Account();
+        updatedAccount.setAccountId(Constants.VALID_ACCOUNT_ID);
+        updatedAccount.setDocumentNumber(Constants.VALID_CPF);
+        updatedAccount.setLimit(new BigDecimal(Constants.ACCOUNT_LIMIT + limitDifference));
+    	
+    	when(accountRepository.findById(Constants.VALID_ACCOUNT_ID)).thenReturn(Optional.of(existentAccount));
+    	when(accountRepository.save(account)).thenReturn(updatedAccount);
+    	
+    	existentAccount = accountService.updateLimit(account);
+    	assertThat(existentAccount.getLimit(), is(updatedAccount.getLimit()));
+    	
     }
 
 }

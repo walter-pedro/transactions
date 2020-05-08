@@ -59,6 +59,7 @@ public class TransactionServiceTest {
     	existentAccount = new Account();
         existentAccount.setAccountId(Constants.VALID_ACCOUNT_ID);
         existentAccount.setDocumentNumber(Constants.VALID_CPF);
+        existentAccount.setLimit(new BigDecimal(Constants.ACCOUNT_LIMIT));
         
         existentOperationType = new OperationType();
         existentOperationType.setOperationTypeId(Constants.VALID_OPERATION_TYPE_ID);
@@ -92,7 +93,7 @@ public class TransactionServiceTest {
     	
     	transaction.setAccount(account);
     	transaction.setOperationType(operationType);
-    	transaction.setAmount(new BigDecimal(1000));
+    	transaction.setAmount(new BigDecimal(Constants.ACCOUNT_LIMIT));
     	transaction.setEventDate(new Date());
     	
     	transactionService.save(transaction);
@@ -108,6 +109,21 @@ public class TransactionServiceTest {
     	transaction.setAccount(account);
     	transaction.setOperationType(operationType);
     	transaction.setAmount(new BigDecimal(1000));
+    	transaction.setEventDate(new Date());
+    	
+    	transactionService.save(transaction);
+    	
+    	verify(transactionRepository).save(transaction);
+    }
+    
+    @Test(expected = InvalidAttributesException.class)
+    public void mustNotProcessTransactionWithValueAboveTheLimit() throws InvalidAttributesException {
+    	account.setAccountId(Constants.VALID_ACCOUNT_ID);
+    	operationType.setOperationTypeId(Constants.VALID_OPERATION_TYPE_ID);
+    	
+    	transaction.setAccount(account);
+    	transaction.setOperationType(operationType);
+    	transaction.setAmount(new BigDecimal(Constants.ACCOUNT_LIMIT + 100));
     	transaction.setEventDate(new Date());
     	
     	transactionService.save(transaction);

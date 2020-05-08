@@ -11,4 +11,5 @@ public class Constants {
     public static final Long VALID_OPERATION_TYPE_ID = 1L;
     public static final Long INVALID_OPERATION_TYPE_ID = 330L;
     
+    public static final double ACCOUNT_LIMIT = 1000d;
 }
