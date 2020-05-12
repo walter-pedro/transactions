@@ -1,6 +1,7 @@
 package com.walter.transactions.resource;
 
 import javax.naming.directory.InvalidAttributesException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class TransactionResource {
 	}
 	
 	@ExceptionHandler({InvalidAttributesException.class})
-	public ResponseEntity<Error> handle(IllegalArgumentException e) {
+	public ResponseEntity<Error> handle(InvalidAttributesException e) {
 		return new ResponseEntity<>(new Error(e.getMessage()), 
 				HttpStatus.BAD_REQUEST);
 	}

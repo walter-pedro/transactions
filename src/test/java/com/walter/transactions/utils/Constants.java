@@ -12,4 +12,7 @@ public class Constants {
     public static final Long INVALID_OPERATION_TYPE_ID = 330L;
     
     public static final double ACCOUNT_LIMIT = 1000d;
+    
+	public static final String DEBIT_OPERATION_TYPE = "D";
+	public static final String CREDIT_OPERATION_TYPE = "C";
 }

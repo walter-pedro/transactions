@@ -1,7 +1,5 @@
 package com.walter.transactions.repository;
 
-import static org.junit.Assert.assertThat;
-
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -84,4 +82,5 @@ public class AccountRepositoryTest {
 		
 		assertThat(insertedAccount.getLimit(), is(newLimit));
 	}
+	
 }

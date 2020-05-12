@@ -22,6 +22,7 @@ public class Account {
 
     @NotNull
     @Length(min = 11, max = 14)
+    @Column(unique = true)
     private String documentNumber;
     
     @NotNull
